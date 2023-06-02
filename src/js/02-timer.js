@@ -22,12 +22,12 @@ const options = {
             window.alert("Please choose a date in the future");
         } else {
             startBtn.disabled = false;
-            dataTimePic.disabled = true;
         }
         
         
         startBtn.addEventListener('click', () => {
             startBtn.disabled = true;
+            dataTimePic.disabled = true;
 
             const interval = setInterval(updateInterval, 100);
 
