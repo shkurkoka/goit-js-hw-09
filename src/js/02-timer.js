@@ -12,6 +12,8 @@ const dataHours = document.querySelector('[data-hours]');
 const dataMinutes = document.querySelector('[data-minutes]');
 const dataSeconds = document.querySelector('[data-seconds]');
 
+let date;
+
 const options = {
     enableTime: true,
     time_24hr: true,
