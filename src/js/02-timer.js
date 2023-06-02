@@ -22,40 +22,39 @@ const options = {
             window.alert("Please choose a date in the future");
         } else {
             startBtn.disabled = false;
+            date = selectedDates[0];
         }
-        
-        
-        startBtn.addEventListener('click', () => {
-            startBtn.disabled = true;
-            dataTimePic.disabled = true;
-
-            const interval = setInterval(updateInterval, 100);
-
-            function updateInterval() {
-                let delta = selectedDates[0].getTime() - new Date().getTime();
-                if (delta <= 0) {
-                    clearInterval(interval);
-                } else {
-                    const { days, hours, minutes, seconds } = convertMs(delta);
-                    updateTimer(days, hours, minutes, seconds);
-                }
-            }
-
-
-            function updateTimer(days, hours, minutes, seconds) {
-                dataDays.textContent = padNumber(days);
-                dataHours.textContent = padNumber(hours);
-                dataMinutes.textContent = padNumber(minutes);
-                dataSeconds.textContent = padNumber(seconds);
-            }
-
-            function padNumber(number) {
-                return String(number).padStart(2, '0');
-            }
-        });
     },
 };
 
+startBtn.addEventListener('click', () => {
+    startBtn.disabled = true;
+    dataTimePic.disabled = true;
+
+    const interval = setInterval(updateInterval, 100);
+
+    function updateInterval() {
+        let delta = date.getTime() - new Date().getTime();
+        if (delta <= 0) {
+            clearInterval(interval);
+        } else {
+            const { days, hours, minutes, seconds } = convertMs(delta);
+            updateTimer(days, hours, minutes, seconds);
+        }
+    }
+
+
+    function updateTimer(days, hours, minutes, seconds) {
+        dataDays.textContent = padNumber(days);
+        dataHours.textContent = padNumber(hours);
+        dataMinutes.textContent = padNumber(minutes);
+        dataSeconds.textContent = padNumber(seconds);
+    }
+
+    function padNumber(number) {
+        return String(number).padStart(2, '0');
+    }
+});
 
 
 
